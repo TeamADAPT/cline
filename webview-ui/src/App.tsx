@@ -1,86 +1,25 @@
-import { useCallback, useEffect, useState } from "react"
-import { useEvent } from "react-use"
-import { ExtensionMessage } from "../../src/shared/ExtensionMessage"
-import ChatView from "./components/chat/ChatView"
-import HistoryView from "./components/history/HistoryView"
-import SettingsView from "./components/settings/SettingsView"
-import WelcomeView from "./components/welcome/WelcomeView"
-import { ExtensionStateContextProvider, useExtensionState } from "./context/ExtensionStateContext"
-import { vscode } from "./utils/vscode"
+import React from 'react';
+import './App.css';
 
-const AppContent = () => {
-	const { didHydrateState, showWelcome, shouldShowAnnouncement } = useExtensionState()
-	const [showSettings, setShowSettings] = useState(false)
-	const [showHistory, setShowHistory] = useState(false)
-	const [showAnnouncement, setShowAnnouncement] = useState(false)
-
-	const handleMessage = useCallback((e: MessageEvent) => {
-		const message: ExtensionMessage = e.data
-		switch (message.type) {
-			case "action":
-				switch (message.action!) {
-					case "settingsButtonClicked":
-						setShowSettings(true)
-						setShowHistory(false)
-						break
-					case "historyButtonClicked":
-						setShowSettings(false)
-						setShowHistory(true)
-						break
-					case "chatButtonClicked":
-						setShowSettings(false)
-						setShowHistory(false)
-						break
-				}
-				break
-		}
-	}, [])
-
-	useEvent("message", handleMessage)
-
-	useEffect(() => {
-		if (shouldShowAnnouncement) {
-			setShowAnnouncement(true)
-			vscode.postMessage({ type: "didShowAnnouncement" })
-		}
-	}, [shouldShowAnnouncement])
-
-	if (!didHydrateState) {
-		return null
-	}
-
-	return (
-		<>
-			{showWelcome ? (
-				<WelcomeView />
-			) : (
-				<>
-					{showSettings && <SettingsView onDone={() => setShowSettings(false)} />}
-					{showHistory && <HistoryView onDone={() => setShowHistory(false)} />}
-					{/* Do not conditionally load ChatView, it's expensive and there's state we don't want to lose (user input, disableInput, askResponse promise, etc.) */}
-					<ChatView
-						showHistoryView={() => {
-							setShowSettings(false)
-							setShowHistory(true)
-						}}
-						isHidden={showSettings || showHistory}
-						showAnnouncement={showAnnouncement}
-						hideAnnouncement={() => {
-							setShowAnnouncement(false)
-						}}
-					/>
-				</>
-			)}
-		</>
-	)
+const App: React.FC = () => {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <h1>ADAPTdev Dashboard</h1>
+      </header>
+      <main>
+        <section className="control-panel">
+          {/* TODO: Add start/stop buttons */}
+        </section>
+        <section className="task-list">
+          {/* TODO: Implement task list view */}
+        </section>
+        <section className="log-display">
+          {/* TODO: Add real-time log display */}
+        </section>
+      </main>
+    </div>
+  );
 }
 
-const App = () => {
-	return (
-		<ExtensionStateContextProvider>
-			<AppContent />
-		</ExtensionStateContextProvider>
-	)
-}
-
-export default App
+export default App;

@@ -1,0 +1,13 @@
+[1126597:1016/023043.479131:WARNING:bluez_dbus_manager.cc(248)] Floss manager not present, cannot set Floss enable/disable.
+MESA: error: ZINK: failed to choose pdev
+glx: failed to create drisw screen
+[1126649:1016/023043.613537:ERROR:viz_main_impl.cc(198)] Exiting GPU process due to errors during initialization
+[90m[main 2024-10-16T09:30:43.671Z][0m [File Watcher (node.js)] Request to start watching: /home/gcp/.config/Code/User (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>),/home/gcp/.config/Code/User/settings.json (excludes: <none>, includes: <all>, filter: <none>, correlationId: <none>)
+[90m[main 2024-10-16T09:30:43.692Z][0m Sending env to running instance...
+[90m[main 2024-10-16T09:30:43.694Z][0m [File Watcher (node.js)] Started watching: '/home/gcp/.config/Code/User'
+[90m[main 2024-10-16T09:30:43.697Z][0m [File Watcher (node.js)] Started watching: '/home/gcp/.config/Code/User/settings.json'
+[1126682:1016/023043.712308:WARNING:gpu_memory_buffer_support_x11.cc(49)] dri3 extension not supported.
+[1126682:1016/023043.713687:WARNING:sandbox_linux.cc(420)] InitializeSandbox() called with multiple threads in process gpu-process.
+[90m[main 2024-10-16T09:30:43.762Z][0m Sent env to running instance. Terminating...
+[90m[main 2024-10-16T09:30:43.762Z][0m Lifecycle#kill()
+[90m[main 2024-10-16T09:30:43.763Z][0m Lifecycle#onWillShutdown.fire()
